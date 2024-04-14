@@ -1,0 +1,2 @@
+model_checkpoint_path: "D:/Genet-main/src/simulator/abr_simulator/pensieve/pensieve res\\pretrained_model\\nn_model_ep_500000.ckpt"
+all_model_checkpoint_paths: "D:/Genet-main/src/simulator/abr_simulator/pensieve/pensieve res\\pretrained_model\\nn_model_ep_500000.ckpt"
