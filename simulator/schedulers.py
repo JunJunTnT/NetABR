@@ -27,20 +27,14 @@ class TestScheduler(Scheduler):
 
 class UDRTrainScheduler(Scheduler):
     def __init__(
-        self, config_file: str, traces: List[AbrTrace], percent: float = 0.0
+        self, traces: List[AbrTrace], percent: float = 0.0
     ):
         super().__init__()
-        self.config_file = config_file
         self.traces = traces
         self.percent = percent
 
     def get_trace(self):
-        if self.traces and np.random.uniform(0, 1) < self.percent:
-            return np.random.choice(self.traces)
-        elif self.config_file:
-            return generate_trace_from_config_file(self.config_file)
-        else:
-            raise ValueError
+        return np.random.choice(self.traces)
 
 
 class CL1TrainScheduler(Scheduler):
