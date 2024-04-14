@@ -39,12 +39,7 @@ def parse_args():
     )
 
     parser.add_argument(
-        "--config_file",
-        default="./data/abr/difficulty0.json"
-    )
-
-    parser.add_argument(
-        "--val_trace_dir",
+        "--val-trace-dir",
         default="./data/abr/val_FCC",   # training set
     )
 
@@ -55,33 +50,33 @@ def parse_args():
     )
 
     parser.add_argument(
-        "--time_slot",
+        "--time-slot",
         type=int,
         default=5,
     )
 
     parser.add_argument(
-        "--device_type",
+        "--device-type",
         default=[0, 0, 1, 1, 2, 2, 3, 3],
     )
 
     parser.add_argument(
-        "--pretrained_abr",
+        "--pretrained-abr",
         default=False,
     )
 
     parser.add_argument(
-        "--pretrained_abr_dir",
+        "--pretrained-abr-dir",
         default='./res/pretrained_model',
     )
 
     parser.add_argument(
-        "--pretrained_net",
+        "--pretrained-net",
         default=False,
     )
 
     parser.add_argument(
-        "--pretrained_net_dir",
+        "--pretrained-net-dir",
         default='./res/binets_slot=7_04-14 14-08-29/model_saved/',
     )
 
@@ -93,12 +88,10 @@ def main():
 
     os.makedirs(args.save_dir, exist_ok=True)
     pensieve = Pensieve(train_mode=True)
-    config_file = args.config_file
     all_time, all_bw, all_file_names = load_traces(args.val_trace_dir)
     val_traces = [AbrTrace(t, bw, link_rtt=80, buffer_thresh=60, name=name)
                   for t, bw, name in zip(all_time, all_bw, all_file_names)]
     train_scheduler = UDRTrainScheduler(
-        config_file,
         val_traces,
         percent=0.0,
     )
